@@ -6,11 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./usersignup.component.css']
 })
 export class UsersignupComponent {
-inputtype:boolean=true;
-visible:boolean=true;
+confirminputtype:boolean=true;
+passinputtype:boolean=true;
+confirmvisible:boolean=true;
+
+passvisible:boolean=true;
 viewpass(){
-  this.visible =!this.visible;
-  this.inputtype=!this.inputtype;
+  this.passvisible =!this.passvisible;
+
+  this.passinputtype=!this.passinputtype;
+
+}
+confirmviewpass(){
+  this.confirmvisible =!this.confirmvisible;
+  this.confirminputtype=!this.confirminputtype;
+
 }
   constructor (){}
   ngOnInit(): void {
