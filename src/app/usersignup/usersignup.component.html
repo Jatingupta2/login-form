@@ -1,18 +1,17 @@
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" />
+<div class="container ">
+  <div class="d-flex flex-row justify-content-center min-vh-100 align-items-center ">
+    <div class="img-fluid d-none d-sm-block shadow "><img src="./assets/images/std.jpeg "
+        style="height: 503px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-top-left-radius: 10px;border-bottom-left-radius: 10px; "></div>
 
-<div class="container">
-  <div class="d-flex justify-content-center min-vh-100 align-items-center"> 
-    <div class="img-fluid d-none d-sm-block">
-      <img src="./assets/images/std.png" alt="">
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-4 shadow" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px;">
 
-      <form action>
-        <h1>Sign Up</h1>
+      <form [formGroup]="signupform" (ngSumbit)="signupuser() ">
+        <h1 style="font-weight100;">Sign Up</h1>
         <p>Enter Details to create your account</p>
-        <div class="form-group">
+        <div class="form-group " style="padding-bottom:10px;">
           <span> <i class="bi bi-person-circle" style="right:25px;position:absolute;margin-top: 10px;"></i> </span>
           <label for="input1" style="
                 margin-left: 12px;
@@ -24,11 +23,15 @@
               ">
             Username
           </label>
-          <input type="text" class="form-control" style="height: 3rem" id="input1" required />
+          <input type="text" class="form-control" id="input1" formControlName="username" required />
+          <div style="color: red;font-size:15px;position: absolute;z-index: 10;font-size:15px ;"
+            *ngIf="username && username.invalid && username.touched">
+            This feild is required
+          </div>
+
         </div>
-        <div class="form-group">
-          <span class=""><i class="bi bi-envelope-fill"
-              style="right:25px;position:absolute;margin-top: 10px;"></i></span>
+        <div class="form-group" style="padding-bottom:10px;">
+          <span><i class="bi bi-envelope-fill" style="right:25px;position:absolute;margin-top: 10px;"></i></span>
           <label for="input2" style="
                 margin-left: 12px;
                 margin-left: 15px;
@@ -39,9 +42,11 @@
               ">
             E-mail
           </label>
-          <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" style="height: 3rem" class="form-control" id="input3" required />
+          <input type="email" formControlName="email  " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            class="form-control" id="input3" required />
         </div>
-        <div class="form-group">
+
+        <div class="form-group" style="padding-bottom:10px;">
           <span (click)="viewpass()" style="right:25px;position:absolute;margin-top: 10px;cursor: pointer;">
             <i [ngClass]="passvisible?'bi bi-eye-slash-fill':'bi bi-eye-fill'"></i>
           </span>
@@ -55,7 +60,8 @@
               ">
             Password
           </label>
-          <input [type]="passinputtype?'password':'text'" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" style="height: 3rem" class="form-control" id="input1" required />
+          <input [type]="passinputtype?'password':'text'" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            class="form-control" id="input1" required />
         </div>
         <div class="form-group">
           <span (click)="confirmviewpass()" style="right:25px;position:absolute;margin-top: 10px;cursor: pointer;">
@@ -71,20 +77,25 @@
               ">
             Confirm password
           </label>
-          <input [type]="confirminputtype?'password':'text'" style="height: 3rem" class="form-control" id="input1" required />
+          <input [type]="confirminputtype?'password':'text'" class="form-control" id="input1" formControlName="password"
+            required />
         </div>
         <p>Already Registered? <span><a href="">Login</a></span></p>
-        <button class="btn btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-primary btn-block " [disabled]="signupform.invalid" type="submit">Register</button>
 
         <hr style="background-color: black;">
-        <p class="text-center" style="margin-top: -29px;background-color: white;;">
+        <p class="text-center" style="margin-top: -29px;">
           OR</p>
-        <div class="text-center">
-          <i class="bi bi-google"></i>
-          <i class="bi bi-facebook"></i><i class="bi bi-twitter"></i><i class="bi bi-linkedin"></i>
+        <div class="text-center mb-3">
+          <i class="bi bi-google px-2"></i>
+          <i class="bi bi-facebook px-2"></i><i class="bi bi-twitter px-2"></i><i class="bi bi-linkedin px-2"></i>
         </div>
       </form>
 
     </div>
   </div>
 </div>
+<div class="col-md-4 shadow">
+xyz
+</div>
+

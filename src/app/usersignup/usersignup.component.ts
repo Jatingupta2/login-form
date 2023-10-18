@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl , FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-usersignup',
@@ -6,6 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./usersignup.component.css']
 })
 export class UsersignupComponent {
+  signupform= new FormGroup({
+    username: new FormControl('',[Validators.required]),
+     
+  })
+  signupuser(){
+    console.log(this.signupform.value)
+  }
+  get username(){
+    return this.signupform.get( 'username')
+  }
 confirminputtype:boolean=true;
 passinputtype:boolean=true;
 confirmvisible:boolean=true;
@@ -22,10 +34,11 @@ confirmviewpass(){
   this.confirminputtype=!this.confirminputtype;
 
 }
+
+
   constructor (){}
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+    
     
   }
 }
