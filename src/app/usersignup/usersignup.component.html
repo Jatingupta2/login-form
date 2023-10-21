@@ -22,13 +22,19 @@
               ">
             Username
           </label>
-          <input type="text" class="form-control" id="input1" formControlName="username" required />
-          <div style="color: red;font-size:15px;position: absolute;z-index: 10;font-size:15px ;"
-            *ngIf="username && username.invalid && username.touched">
-            This feild is required
+          <input type="text" class="form-control" id="input1"  pattern="^[A-Za-z][A-Za-z0-9_]{4,6}$"  formControlName="username" required />
+          <div [ngClass]="{'has-error': username?.invalid && (username?.dirty || username?.touched)}">
+            
+            <div style="color: red;font-size:15px;position: absolute;z-index: 10;font-size:15px ;"
+            *ngIf="username?.hasError('required') && (username?.dirty || username?.touched)">
+              This field is required.
+            </div>
+            <div style="color: red;font-size:15px;position: absolute;z-index: 10;font-size:15px ;"
+            *ngIf="username?.hasError('pattern') && (username?.dirty || username?.touched)">
+              Username invalid pattern
+            </div>
           </div>
-
-        </div>
+          </div>
         <div class="form-group" style="padding-bottom:10px;">
           <span><i class="bi bi-envelope-fill" style="right:25px;position:absolute;margin-top: 10px;"></i></span>
           <label for="input2" style="
@@ -40,9 +46,23 @@
               ">
             E-mail
           </label>
-          <input type="email" formControlName="email  " pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          <div [ngClass]="{'has-error': email?.invalid && (email?.dirty || email?.touched)}">
+            <input type="email" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             class="form-control" id="input3" required />
+                
+                <div style="color: red;font-size:15px;position: absolute;z-index: 10;font-size:15px ;"
+                *ngIf="email?.hasError('required') && (email?.dirty || email?.touched)">
+                  This field is required.
+                </div>
+                <div style="color: red;font-size:15px;position: absolute;z-index: 10;font-size:15px ;"
+                *ngIf="email?.hasError('pattern') && (email?.dirty || email?.touched)">
+                  email invalid pattern
+                </div>
+              
+            
         </div>
+      </div>
+
 
         <div class="form-group" style="padding-bottom:10px;">
           <span (click)="viewpass()" style="right:25px;position:absolute;margin-top: 10px;cursor: pointer;">
@@ -58,7 +78,7 @@
             Password
           </label>
           <input [type]="passinputtype?'password':'text'" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            class="form-control" id="input1" required />
+            class="form-control" id="input1" required formControlName="password"/>
         </div>
         <div class="form-group">
           <span (click)="confirmviewpass()" style="right:25px;position:absolute;margin-top: 10px;cursor: pointer;">

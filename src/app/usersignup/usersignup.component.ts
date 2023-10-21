@@ -10,6 +10,11 @@ import { FormControl , FormGroup, Validators } from '@angular/forms';
 export class UsersignupComponent {
   signupform= new FormGroup({
     username: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required,Validators.email]),
+    password: new FormControl('',[Validators.required]),
+    confirmpassword: new FormControl('',[Validators.required]),
+
+
      
   })
   signupuser(){
@@ -17,6 +22,15 @@ export class UsersignupComponent {
   }
   get username(){
     return this.signupform.get( 'username')
+  }
+  get email(){
+    return this.signupform.get( 'email')
+  }
+  get password(){
+    return this.signupform.get( 'password')
+  }
+  get confirmpassword(){
+    return this.signupform.get( 'confirmpassword')
   }
 confirminputtype:boolean=true;
 passinputtype:boolean=true;
