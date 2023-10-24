@@ -27,7 +27,7 @@
     </div>
 
     <div
-      class="col-4 shadow p-4"
+      class="col-md-4 shadow p-4"
       style="
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
@@ -36,7 +36,9 @@
       "
     >
       <form [formGroup]="signupform" (ngSumbit)="signupuser()">
-        <div class="col"><h3 style="font-weight: 600">Sign Up</h3></div>
+        <div class="col ">
+          <h3 style="font-weight: 600">Sign Up</h3>
+        </div>
         <div class="col"><p>Enter Details to create your account</p></div>
         <div class="col">
           <div class="form-group" style="padding-bottom: 15px; z-index: 10">
@@ -93,7 +95,7 @@
                   (username?.dirty || username?.touched)
                 "
               >
-                Username invalid pattern
+                Username Invalid Pattern
               </div>
             </div>
           </div>
@@ -152,7 +154,7 @@
                   email?.hasError('pattern') && (email?.dirty || email?.touched)
                 "
               >
-                email invalid pattern
+                E-mail Invalid Pattern
               </div>
             </div>
           </div>
@@ -221,7 +223,7 @@
                   (password?.dirty || password?.touched)
                 "
               >
-                Ivalid pattern
+                Invalid Pattern
               </div>
             </div>
           </div>
@@ -282,7 +284,7 @@
                   (confirmpassword?.dirty || confirmpassword?.touched)
                 "
               >
-                This field is required.
+                This Field is Required.
               </div>
             </div>
           </div>
