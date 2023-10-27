@@ -36,7 +36,7 @@
         z-index: 10;
       "
     >
-      <form [formGroup]="signupform" (ngSumbit)="signupuser()">
+      <form [formGroup]="signupform" (ngSumbit)="signupuser()" >
         <div class="col">
           <h2>Sign Up</h2>
         </div>
@@ -65,7 +65,7 @@
               type="text"
               class="form-control"
               id="input1"
-              pattern="^[A-Za-z][A-Za-z0-9_]{4,6}$"
+              pattern="^(?=.*[A-Z])(?=.*\d)(?!.*\s).*$"
               formControlName="username"
               required
             />
@@ -82,22 +82,18 @@
                 z-index: 10;
               "
             >
-              <div
-                *ngIf="
-                  username?.hasError('required') &&
-                  (username?.dirty || username?.touched)
-                "
-              >
-                This field is required.
-              </div>
-              <div
-                *ngIf="
-                  username?.hasError('pattern') &&
-                  (username?.dirty || username?.touched)
-                "
-              >
-                Username Invalid Pattern
-              </div>
+            <div *ngIf="username?.hasError('required') && (username?.dirty || username?.touched)">
+              This field is required.
+            </div>
+            
+            <div *ngIf="username?.hasError('pattern') && !username?.hasError('maxlength') && (username?.dirty || username?.touched)">
+              Invalid Pattern
+            </div>
+            
+            <div *ngIf="username?.hasError('maxlength') && (username?.dirty || username?.touched)">
+              Maximum 6 letters Allowed
+            </div>
+            
             </div>
           </div>
         </div>
@@ -156,7 +152,7 @@
                   email?.hasError('pattern') && (email?.dirty || email?.touched)
                 "
               >
-                E-mail Invalid Pattern
+               Invalid Pattern
               </div>
             </div>
           </div>
@@ -280,14 +276,13 @@
                 z-index: 10;
               "
             >
-              <div
-                *ngIf="
-                  confirmpassword?.hasError('required') &&
-                  (confirmpassword?.dirty || confirmpassword?.touched)
-                "
-              >
-                This Field is Required.
-              </div>
+            <div *ngIf="confirmpassword?.hasError('required') && (confirmpassword?.dirty || confirmpassword?.touched)">
+              This Field is Required.
+            </div>
+            <div *ngIf="!confirmpassword?.hasError('required') && signupform?.hasError('passwordMismatch') && (confirmpassword?.dirty || confirmpassword?.touched)">
+              Passwords do not match.
+            </div>
+            
             </div>
           </div>
         </div>
